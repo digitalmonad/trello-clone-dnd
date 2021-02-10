@@ -8,36 +8,37 @@ import {
 } from "./utils/arrayUtils";
 
 import { DragItem } from "./DragItem.type";
+import R from "ramda";
 import { nanoid } from "nanoid";
 
-export type Task = { id: string; text: string };
+export type TaskT = { id: string; text: string };
 
-export type List = { id: string; text: string; tasks: Task[] };
+export type ColumnT = { id: string; text: string; tasks: TaskT[] };
 
 export type AppState = {
-  lists: List[];
+  columns: ColumnT[];
   draggedItem: DragItem | undefined;
 };
 
 export enum AppActionKind {
-  "ADD_LIST" = "ADD_LIST",
+  "ADD_COLUMN" = "ADD_COLUMN",
   "ADD_TASK" = "ADD_TASK",
-  "MOVE_LIST" = "MOVE_LIST",
+  "MOVE_COLUMN" = "MOVE_COLUMN",
   "MOVE_TASK" = "MOVE_TASK",
   "SET_DRAGGED_ITEM" = "SET_DRAGGED_ITEM",
 }
 
 type Action =
   | {
-      type: AppActionKind.ADD_LIST;
+      type: AppActionKind.ADD_COLUMN;
       payload: { text: string };
     }
   | {
       type: AppActionKind.ADD_TASK;
-      payload: { text: string; listId: string };
+      payload: { text: string; columnId: string };
     }
   | {
-      type: AppActionKind.MOVE_LIST;
+      type: AppActionKind.MOVE_COLUMN;
       payload: {
         dragIndex: number;
         hoverIndex: number;
@@ -52,53 +53,53 @@ type Action =
       payload: {
         dragIndex: number;
         hoverIndex: number;
-        sourceColumn: string;
-        targetColumn: string;
+        sourceColumnId: string;
+        targetColumnId: string;
       };
     };
 
 const appStateReducer = (state: AppState, action: Action) => {
   switch (action.type) {
-    case AppActionKind.ADD_LIST: {
+    case AppActionKind.ADD_COLUMN: {
       const { text } = action.payload;
-      const newList: List = {
+      const newColumn: ColumnT = {
         id: nanoid(),
         text,
         tasks: [],
       };
 
-      return { ...state, lists: [...state.lists, newList] };
+      return { ...state, columns: [...state.columns, newColumn] };
     }
     case AppActionKind.ADD_TASK: {
-      const targetListIndex = findItemIndexById(
-        state.lists,
-        action.payload.listId
+      const targetColumnIndex = findItemIndexById(
+        state.columns,
+        action.payload.columnId
       );
 
-      const targetList = state.lists[targetListIndex];
+      const targetColumn = state.columns[targetColumnIndex];
 
-      const updatedTargetList = {
-        ...targetList,
+      const updatedTargetColumn = {
+        ...targetColumn,
         tasks: [
-          ...targetList.tasks,
+          ...targetColumn.tasks,
           { id: nanoid(), text: action.payload.text },
         ],
       };
       return {
         ...state,
-        lists: overrideItemAtIndex(
-          state.lists,
-          updatedTargetList,
-          targetListIndex
+        Columns: overrideItemAtIndex(
+          state.columns,
+          updatedTargetColumn,
+          targetColumnIndex
         ),
       };
     }
-    case AppActionKind.MOVE_LIST: {
+    case AppActionKind.MOVE_COLUMN: {
       const { dragIndex, hoverIndex } = action.payload;
 
       return {
         ...state,
-        lists: moveItem(state.lists, dragIndex, hoverIndex),
+        columns: moveItem(state.columns, dragIndex, hoverIndex),
       };
     }
 
@@ -106,42 +107,49 @@ const appStateReducer = (state: AppState, action: Action) => {
       const {
         dragIndex,
         hoverIndex,
-        sourceColumn,
-        targetColumn,
+        sourceColumnId,
+        targetColumnId,
       } = action.payload;
-      const sourceListIndex = findItemIndexById(state.lists, sourceColumn);
+      const sourceColumnIndex = findItemIndexById(
+        state.columns,
+        sourceColumnId
+      );
 
-      const targetListIndex = findItemIndexById(state.lists, targetColumn);
-      const sourceList = state.lists[sourceListIndex];
-      const task = sourceList.tasks[dragIndex];
+      const targetColumnIndex = findItemIndexById(
+        state.columns,
+        targetColumnId
+      );
+      const sourceColumn = state.columns[sourceColumnIndex];
+      const task = sourceColumn.tasks[dragIndex];
 
-      const updatedSourceList = {
-        ...sourceList,
-        tasks: removeItemAtIndex(sourceList.tasks, dragIndex),
+      const updatedSourceColumn = {
+        ...sourceColumn,
+        tasks: removeItemAtIndex(sourceColumn.tasks, dragIndex),
       };
 
-      const stateWithUpdatedSourceList = {
+      const stateWithUpdatedSourceColumn = {
         ...state,
-        lists: overrideItemAtIndex(
-          state.lists,
-          updatedSourceList,
-          sourceListIndex
+        columns: overrideItemAtIndex(
+          state.columns,
+          updatedSourceColumn,
+          sourceColumnIndex
         ),
       };
 
-      const targetList = stateWithUpdatedSourceList.lists[targetListIndex];
+      const targetColumn =
+        stateWithUpdatedSourceColumn.columns[targetColumnIndex];
 
-      const updatedTargetList = {
-        ...targetList,
-        tasks: insertItemAtIndex(targetList.tasks, task, hoverIndex),
+      const updatedTargetColumn = {
+        ...targetColumn,
+        tasks: insertItemAtIndex(targetColumn.tasks, task, hoverIndex),
       };
 
       return {
-        ...stateWithUpdatedSourceList,
-        lists: overrideItemAtIndex(
-          stateWithUpdatedSourceList.lists,
-          updatedTargetList,
-          targetListIndex
+        ...stateWithUpdatedSourceColumn,
+        columns: overrideItemAtIndex(
+          stateWithUpdatedSourceColumn.columns,
+          updatedTargetColumn,
+          targetColumnIndex
         ),
       };
     }
@@ -155,7 +163,7 @@ const appStateReducer = (state: AppState, action: Action) => {
 };
 
 const appData: AppState = {
-  lists: [
+  columns: [
     {
       id: "0",
       text: "To Do",

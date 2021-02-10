@@ -35,15 +35,15 @@ export const Card = ({ text, id, index, columnId, isPreview }: CardProps) => {
 
         const dragIndex = item.index;
         const hoverIndex = index;
-        const sourceColumn = item.columnId;
-        const targetColumn = columnId;
+        const sourceColumnId = item.columnId;
+        const targetColumnId = columnId;
 
         dispatch({
           type: AppActionKind.MOVE_TASK,
-          payload: { dragIndex, hoverIndex, sourceColumn, targetColumn },
+          payload: { dragIndex, hoverIndex, sourceColumnId, targetColumnId },
         });
         item.index = hoverIndex;
-        item.columnId = targetColumn;
+        item.columnId = targetColumnId;
       }
     },
   });

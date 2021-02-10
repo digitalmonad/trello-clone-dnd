@@ -10,13 +10,13 @@ function App() {
   return (
     <AppContainer>
       <CustomDragLayer />
-      {state.lists.map((list, i) => (
-        <Column text={list.text} key={list.id} index={i} id={list.id} />
+      {state.columns.map((column, i) => (
+        <Column text={column.text} key={column.id} index={i} id={column.id} />
       ))}
       <AddNewItem
-        toggleButtonText='+ Add New List'
+        toggleButtonText='+ Add New Column'
         onAdd={(text) =>
-          dispatch({ type: AppActionKind.ADD_LIST, payload: { text } })
+          dispatch({ type: AppActionKind.ADD_COLUMN, payload: { text } })
         }
       />
     </AppContainer>

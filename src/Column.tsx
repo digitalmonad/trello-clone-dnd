@@ -34,27 +34,27 @@ export const Column = ({ text, index, id, isPreview }: ColumnProps) => {
           return;
         }
         dispatch({
-          type: AppActionKind.MOVE_LIST,
+          type: AppActionKind.MOVE_COLUMN,
           payload: { dragIndex, hoverIndex },
         });
         item.index = hoverIndex;
       } else {
         const dragIndex = item.index;
         const hoverIndex = 0;
-        const sourceColumn = item.columnId;
-        const targetColumn = id;
+        const sourceColumnId = item.columnId;
+        const targetColumnId = id;
 
-        if (sourceColumn === targetColumn) {
+        if (sourceColumnId === targetColumnId) {
           return;
         }
 
         dispatch({
           type: AppActionKind.MOVE_TASK,
-          payload: { dragIndex, hoverIndex, sourceColumn, targetColumn },
+          payload: { dragIndex, hoverIndex, sourceColumnId, targetColumnId },
         });
 
         item.index = hoverIndex;
-        item.columnId = targetColumn;
+        item.columnId = targetColumnId;
       }
     },
   });
@@ -66,7 +66,7 @@ export const Column = ({ text, index, id, isPreview }: ColumnProps) => {
       isHidden={isHidden(state.draggedItem, DragItemKind.COLUMN, id, isPreview)}
     >
       <ColumnTitle>{text}</ColumnTitle>
-      {state.lists[index].tasks.map((task, i) => (
+      {state.columns[index].tasks.map((task, i) => (
         <Card
           id={task.id}
           columnId={id}
@@ -80,7 +80,7 @@ export const Column = ({ text, index, id, isPreview }: ColumnProps) => {
         onAdd={(text) =>
           dispatch({
             type: AppActionKind.ADD_TASK,
-            payload: { text, listId: id },
+            payload: { text, columnId: id },
           })
         }
         dark
