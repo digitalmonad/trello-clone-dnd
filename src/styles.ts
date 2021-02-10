@@ -64,23 +64,46 @@ export const AddItemButton = styled.button<AddItemButtonProps>`
   }
 `;
 
+export const Button = styled.button`
+  background-color: #fff;
+  border-radius: 3px;
+  border: none;
+  box-shadow: none;
+  color: #000;
+  cursor: pointer;
+  padding: 6px 12px;
+  text-align: center;
+  transition: background 85ms ease-in;
+  font-weight: bold;
+  &:hover {
+    background-color: #65c64c;
+  }
+`;
+
+export const NewItemButton = styled(Button)`
+  background-color: #5aac44;
+  color: #fff;
+  letter-spacing: 1px;
+  &:hover {
+    background-color: #65c64c;
+  }
+`;
+
+export const CancelNewItemFormButton = styled(Button)`
+  background-color: #d52020;
+  color: #fff;
+  letter-spacing: 1px;
+  &:hover {
+    background-color: #ff4545;
+  }
+`;
+
 export const NewItemFormContainer = styled.div`
   max-width: 300px;
   display: flex;
   flex-direction: column;
   width: 100%;
   align-items: flex-start;
-`;
-
-export const NewItemButton = styled.button`
-  background-color: #5aac44;
-  border-radius: 3px;
-  border: none;
-  box-shadow: none;
-  color: #fff;
-  cursor: pointer;
-  padding: 6px 12px;
-  text-align: center;
 `;
 
 export const NewItemInput = styled.input`

@@ -20,6 +20,9 @@ export const AddNewItem = (props: AddNewItemProps) => {
           onAdd(text);
           setShowForm(false);
         }}
+        onCancel={() => {
+          setShowForm(false);
+        }}
       />
     );
   }

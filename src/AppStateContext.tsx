@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react";
+import { append, findIndex, lensPath, over, pipe, propEq, view } from "ramda";
 import {
   findItemIndexById,
   insertItemAtIndex,
@@ -8,7 +9,6 @@ import {
 } from "./utils/arrayUtils";
 
 import { DragItem } from "./DragItem.type";
-import R from "ramda";
 import { nanoid } from "nanoid";
 
 export type TaskT = { id: string; text: string };
@@ -19,6 +19,8 @@ export type AppState = {
   columns: ColumnT[];
   draggedItem: DragItem | undefined;
 };
+
+const columnsLens = lensPath(["columns"]);
 
 export enum AppActionKind {
   "ADD_COLUMN" = "ADD_COLUMN",
@@ -68,13 +70,14 @@ const appStateReducer = (state: AppState, action: Action) => {
         tasks: [],
       };
 
-      return { ...state, columns: [...state.columns, newColumn] };
+      return over(columnsLens, append(newColumn), state);
     }
     case AppActionKind.ADD_TASK: {
-      const targetColumnIndex = findItemIndexById(
-        state.columns,
-        action.payload.columnId
-      );
+      const { columnId } = action.payload;
+      const targetColumnIndex = pipe(
+        view(columnsLens),
+        findIndex(propEq("id", columnId))
+      )(state);
 
       const targetColumn = state.columns[targetColumnIndex];
 
@@ -87,7 +90,7 @@ const appStateReducer = (state: AppState, action: Action) => {
       };
       return {
         ...state,
-        Columns: overrideItemAtIndex(
+        columns: overrideItemAtIndex(
           state.columns,
           updatedTargetColumn,
           targetColumnIndex

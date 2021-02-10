@@ -1,10 +1,16 @@
-import { NewItemButton, NewItemFormContainer, NewItemInput } from "./styles";
+import {
+  CancelNewItemFormButton,
+  NewItemButton,
+  NewItemFormContainer,
+  NewItemInput,
+} from "./styles";
 import React, { useState } from "react";
 
 import { useFocus } from "./utils/hooks/useFocus";
 
 interface NewItemFormProps {
-  onAdd(text: string): void;
+  onAdd: (text: string) => void;
+  onCancel: () => void;
 }
 
 export const NewItemForm = ({ onAdd }: NewItemFormProps) => {
@@ -25,6 +31,7 @@ export const NewItemForm = ({ onAdd }: NewItemFormProps) => {
         onKeyPress={handleAddText}
       />
       <NewItemButton onClick={() => onAdd(text)}> Create</NewItemButton>
+      <CancelNewItemFormButton>Close</CancelNewItemFormButton>
     </NewItemFormContainer>
   );
 };
