@@ -3,7 +3,7 @@ import { XYCoord, useDragLayer } from "react-dnd";
 import { Card } from "../../components/Card";
 import { Column } from "../../components/Column";
 import { CustomDragLayerContainer } from "../../styles/globalStyles";
-import { DragItemKind } from "../../DragItem.type";
+import { DragItemKind } from "../../app/types/DragItem.types";
 
 function getItemStyles(currentOffset: XYCoord | null): React.CSSProperties {
   if (!currentOffset) {

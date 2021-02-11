@@ -1,15 +1,12 @@
-import {
-  AppActionKind,
-  useAppState,
-} from "../../utils/contexts/AppStateContext";
+import { AppActionKind, DragItem } from "../../app/types/DragItem.types";
 import { ColumnContainer, ColumnTitle } from "./Column.styles";
 import React, { useRef } from "react";
 
 import { AddNewItem } from "../AddNewItem";
 import { Card } from "../Card";
-import { DragItem } from "../../DragItem.type";
-import { DragItemKind } from "../../DragItem.type";
+import { DragItemKind } from "../../app/types/DragItem.types";
 import { isHidden } from "../../utils/globals/isHidden";
+import { useAppState } from "../../utils/hooks/useAppState";
 import { useDragItem } from "../../utils/hooks/useDragItem";
 import { useDrop } from "react-dnd";
 
@@ -79,7 +76,7 @@ export const Column = ({ text, index, id, isPreview }: ColumnProps) => {
         />
       ))}
       <AddNewItem
-        toggleButtonText='+ Add another task'
+        toggleButtonText='+ Task'
         onAdd={(text) =>
           dispatch({
             type: AppActionKind.ADD_TASK,

@@ -1,10 +1,7 @@
-import {
-  AppActionKind,
-  useAppState,
-} from "../../utils/contexts/AppStateContext";
-
 import { AddNewItem } from "../../components/AddNewItem";
+import { AppActionKind } from "../../app/types/AppState.types";
 import { Column } from "../../components/Column";
+import { useAppState } from "../../utils/hooks/useAppState";
 
 export const DashbordPage = () => {
   const { state, dispatch } = useAppState();
@@ -14,10 +11,11 @@ export const DashbordPage = () => {
         <Column text={column.text} key={column.id} index={i} id={column.id} />
       ))}
       <AddNewItem
-        toggleButtonText='+ Add New Column'
+        toggleButtonText='+ Column'
         onAdd={(text) =>
           dispatch({ type: AppActionKind.ADD_COLUMN, payload: { text } })
         }
+        dark
       />
     </>
   );

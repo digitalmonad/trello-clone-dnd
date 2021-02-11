@@ -5,8 +5,8 @@ export const CardContainer = styled(DragPreviewContainer)`
   background-color: #fff;
   cursor: pointer;
   margin-bottom: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 1rem 1rem 1.5rem;
   max-width: 300px;
-  border-radius: 3px;
-  box-shadow: #091e4240 0px 1px 0px 0px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 14px 4px #aaa9ca1a;
 `;

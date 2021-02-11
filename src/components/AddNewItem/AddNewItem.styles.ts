@@ -5,17 +5,17 @@ interface AddItemButtonProps {
 }
 
 export const AddItemButton = styled.button<AddItemButtonProps>`
-  background-color: #ffffff3d;
-  border-radius: 3px;
-  border: none;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 2px solid #d9e8e2;
   color: ${(props) => (props.dark ? "#000" : "#fff")};
   cursor: pointer;
   max-width: 300px;
   padding: 10px 12px;
-  text-align: left;
-  transition: background 85ms ease-in;
+  text-align: center;
+  transition: background 85ms ease-in, border-color 0.1s ease;
   width: 100%;
   &:hover {
-    background-color: #ffffff52;
+    border-color: #8be8c2;
   }
 `;

@@ -19,3 +19,11 @@ export type CardDragItem = {
 };
 
 export type DragItem = ColumnDragItem | CardDragItem;
+
+export enum AppActionKind {
+  "ADD_COLUMN" = "ADD_COLUMN",
+  "ADD_TASK" = "ADD_TASK",
+  "MOVE_COLUMN" = "MOVE_COLUMN",
+  "MOVE_TASK" = "MOVE_TASK",
+  "SET_DRAGGED_ITEM" = "SET_DRAGGED_ITEM",
+}
