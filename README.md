@@ -18,7 +18,7 @@ TODO:
 - rest of CRUD oprations
 - async communication with the API server
 
-# Getting Started with Create React App
+##
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
