@@ -1,12 +1,12 @@
-import { DragItem } from "../types/DragItem.types";
+import { DragItemT } from "../types/DragItem.types";
 
 export type TaskT = { id: string; text: string };
 
 export type ColumnT = { id: string; text: string; tasks: TaskT[] };
 
-export type AppState = {
+export type AppStateT = {
   columns: ColumnT[];
-  draggedItem: DragItem | undefined;
+  draggedItem: DragItemT | undefined;
 };
 
 export enum AppActionKind {
@@ -17,7 +17,7 @@ export enum AppActionKind {
   "SET_DRAGGED_ITEM" = "SET_DRAGGED_ITEM",
 }
 
-export type Action =
+export type ActionT =
   | {
       type: AppActionKind.ADD_COLUMN;
       payload: { text: string };
@@ -35,7 +35,7 @@ export type Action =
     }
   | {
       type: AppActionKind.SET_DRAGGED_ITEM;
-      payload: DragItem | undefined;
+      payload: DragItemT | undefined;
     }
   | {
       type: AppActionKind.MOVE_TASK;
@@ -47,7 +47,7 @@ export type Action =
       };
     };
 
-export interface AppStateContextProps {
-  state: AppState;
-  dispatch: React.Dispatch<Action>;
-}
+export type AppStateContextPropsT = {
+  state: AppStateT;
+  dispatch: React.Dispatch<ActionT>;
+};

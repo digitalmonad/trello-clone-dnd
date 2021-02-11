@@ -1,10 +1,7 @@
-import {
-  AppActionKind,
-  DragItem,
-  DragItemKind,
-} from "../../app/types/DragItem.types";
+import { DragItemKind, DragItemT } from "../../app/types/DragItem.types";
 import React, { useRef } from "react";
 
+import { AppActionKind } from "../../app/types/AppState.types";
 import { CardContainer } from "./Card.styles";
 import { isHidden } from "../../utils/globals/isHidden";
 import { useAppState } from "../../utils/hooks/useAppState";
@@ -31,7 +28,7 @@ export const Card = ({ text, id, index, columnId, isPreview }: CardProps) => {
   });
   const [, drop] = useDrop({
     accept: DragItemKind.CARD,
-    hover(item: DragItem) {
+    hover(item: DragItemT) {
       if (item.type === DragItemKind.CARD) {
         if (item.id === id) {
           return;

@@ -1,4 +1,4 @@
-import { Action, AppActionKind, AppState } from "../types/AppState.types";
+import { ActionT, AppActionKind, AppStateT } from "../types/AppState.types";
 import { append, findIndex, lensPath, over, pipe, propEq, view } from "ramda";
 import {
   findItemIndexById,
@@ -13,7 +13,7 @@ import { nanoid } from "nanoid";
 
 const columnsLens = lensPath(["columns"]);
 
-export const appStateReducer = (state: AppState, action: Action) => {
+export const appStateReducer = (state: AppStateT, action: ActionT) => {
   switch (action.type) {
     case AppActionKind.ADD_COLUMN: {
       const { text } = action.payload;
@@ -118,7 +118,7 @@ export const appStateReducer = (state: AppState, action: Action) => {
   }
 };
 
-export const appData: AppState = {
+export const appData: AppStateT = {
   columns: [
     {
       id: nanoid(),

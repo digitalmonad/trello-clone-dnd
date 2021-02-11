@@ -2,6 +2,22 @@
 
 ![](images/trello-clone.png)
 
+Simplistic sandbox app that mimics basic funcionalities of well known Trello app.
+Main purpose was to try to work with HTML5 drag and drop using React hooks.
+I also featured useReducer, useContext hooks and styling with styled-components.
+
+Features:
+
+- New column can be created
+- New task can be created
+- Columns can be rearanged by drag and drop
+- Tasks can be rearanged inside the column or pulled to other column by drag and drop
+
+TODO:
+
+- rest of CRUD oprations
+- async communication with the API server
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

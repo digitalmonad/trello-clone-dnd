@@ -1,11 +1,11 @@
 import { AppActionKind } from "../../app/types/AppState.types";
-import { DragItem } from "../../app/types/DragItem.types";
+import { DragItemT } from "../../app/types/DragItem.types";
 import { getEmptyImage } from "react-dnd-html5-backend";
 import { useAppState } from "./useAppState";
 import { useDrag } from "react-dnd";
 import { useEffect } from "react";
 
-export const useDragItem = (item: DragItem) => {
+export const useDragItem = (item: DragItemT) => {
   const { dispatch } = useAppState();
   const [, drag, preview] = useDrag({
     item,

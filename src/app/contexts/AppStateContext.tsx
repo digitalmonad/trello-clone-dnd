@@ -1,10 +1,10 @@
 import React, { createContext, useReducer } from "react";
 import { appData, appStateReducer } from "../states/appState";
 
-import { AppStateContextProps } from "../types/AppState.types";
+import { AppStateContextPropsT } from "../types/AppState.types";
 
-export const AppStateContext = createContext<AppStateContextProps>(
-  {} as AppStateContextProps
+export const AppStateContext = createContext<AppStateContextPropsT>(
+  {} as AppStateContextPropsT
 );
 
 export const AppStateProvider = ({ children }: React.PropsWithChildren<{}>) => {

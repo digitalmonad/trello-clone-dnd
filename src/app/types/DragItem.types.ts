@@ -3,14 +3,14 @@ export enum DragItemKind {
   "CARD" = "CARD",
 }
 
-export type ColumnDragItem = {
+export type ColumnDragItemT = {
   index: number;
   id: string;
   text: string;
   type: DragItemKind.COLUMN;
 };
 
-export type CardDragItem = {
+export type CardDragItemT = {
   index: number;
   id: string;
   columnId: string;
@@ -18,12 +18,4 @@ export type CardDragItem = {
   type: DragItemKind.CARD;
 };
 
-export type DragItem = ColumnDragItem | CardDragItem;
-
-export enum AppActionKind {
-  "ADD_COLUMN" = "ADD_COLUMN",
-  "ADD_TASK" = "ADD_TASK",
-  "MOVE_COLUMN" = "MOVE_COLUMN",
-  "MOVE_TASK" = "MOVE_TASK",
-  "SET_DRAGGED_ITEM" = "SET_DRAGGED_ITEM",
-}
+export type DragItemT = ColumnDragItemT | CardDragItemT;

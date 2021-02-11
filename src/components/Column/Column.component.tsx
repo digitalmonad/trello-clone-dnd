@@ -1,10 +1,10 @@
-import { AppActionKind, DragItem } from "../../app/types/DragItem.types";
+import { AppActionKind, TaskT } from "../../app/types/AppState.types";
 import { ColumnContainer, ColumnTitle } from "./Column.styles";
+import { DragItemKind, DragItemT } from "../../app/types/DragItem.types";
 import React, { useRef } from "react";
 
 import { AddNewItem } from "../AddNewItem";
 import { Card } from "../Card";
-import { DragItemKind } from "../../app/types/DragItem.types";
 import { isHidden } from "../../utils/globals/isHidden";
 import { useAppState } from "../../utils/hooks/useAppState";
 import { useDragItem } from "../../utils/hooks/useDragItem";
@@ -25,7 +25,7 @@ export const Column = ({ text, index, id, isPreview }: ColumnProps) => {
 
   const [, drop] = useDrop({
     accept: [DragItemKind.COLUMN, DragItemKind.CARD],
-    hover(item: DragItem) {
+    hover(item: DragItemT) {
       if (item.type === DragItemKind.COLUMN) {
         const dragIndex = item.index;
         const hoverIndex = index;
