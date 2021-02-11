@@ -1,7 +1,5 @@
-import "./index.css";
-
-import App from "./App";
-import { AppStateProvider } from "./AppStateContext";
+import App from "./app/App.component";
+import { AppStateProvider } from "./utils/contexts/AppStateContext";
 import { HTML5Backend as Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import React from "react";

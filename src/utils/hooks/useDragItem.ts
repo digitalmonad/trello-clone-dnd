@@ -1,4 +1,4 @@
-import { AppActionKind, useAppState } from "../../AppStateContext";
+import { AppActionKind, useAppState } from "../contexts/AppStateContext";
 
 import { DragItem } from "../../DragItem.type";
 import { getEmptyImage } from "react-dnd-html5-backend";

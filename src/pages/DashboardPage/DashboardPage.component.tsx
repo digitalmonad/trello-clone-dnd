@@ -1,15 +1,15 @@
-import { AppActionKind, useAppState } from "./AppStateContext";
+import {
+  AppActionKind,
+  useAppState,
+} from "../../utils/contexts/AppStateContext";
 
-import { AddNewItem } from "./AddNewItem";
-import { AppContainer } from "./styles";
-import { Column } from "./Column";
-import { CustomDragLayer } from "./CustomDragLayer";
+import { AddNewItem } from "../../components/AddNewItem";
+import { Column } from "../../components/Column";
 
-function App() {
+export const DashbordPage = () => {
   const { state, dispatch } = useAppState();
   return (
-    <AppContainer>
-      <CustomDragLayer />
+    <>
       {state.columns.map((column, i) => (
         <Column text={column.text} key={column.id} index={i} id={column.id} />
       ))}
@@ -19,8 +19,6 @@ function App() {
           dispatch({ type: AppActionKind.ADD_COLUMN, payload: { text } })
         }
       />
-    </AppContainer>
+    </>
   );
-}
-
-export default App;
+};

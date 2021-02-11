@@ -1,10 +1,13 @@
-import { AppActionKind, useAppState } from "./AppStateContext";
-import { DragItem, DragItemKind } from "./DragItem.type";
+import {
+  AppActionKind,
+  useAppState,
+} from "../../utils/contexts/AppStateContext";
+import { DragItem, DragItemKind } from "../../DragItem.type";
 import React, { useRef } from "react";
 
-import { CardContainer } from "./styles";
-import { isHidden } from "./utils/isHidden";
-import { useDragItem } from "./utils/hooks/useDragItem";
+import { CardContainer } from "./Card.styles";
+import { isHidden } from "../../utils/globals/isHidden";
+import { useDragItem } from "../../utils/hooks/useDragItem";
 import { useDrop } from "react-dnd";
 
 interface CardProps {

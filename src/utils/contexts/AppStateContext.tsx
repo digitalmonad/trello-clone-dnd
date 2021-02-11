@@ -6,9 +6,9 @@ import {
   moveItem,
   overrideItemAtIndex,
   removeItemAtIndex,
-} from "./utils/arrayUtils";
+} from "../arrayUtils";
 
-import { DragItem } from "./DragItem.type";
+import { DragItem } from "../../DragItem.type";
 import { nanoid } from "nanoid";
 
 export type TaskT = { id: string; text: string };
