@@ -7,9 +7,16 @@ export const ColumnContainer = styled(DragPreviewContainer)`
   margin-right: 20px;
   padding: 8px 8px;
   flex-grow: 0;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const ColumnTitle = styled.div`
   padding: 6px 16px 12px;
   font-weight: bold;
+  color: #939d99;
+  &:hover {
+    color: #000;
+  }
 `;

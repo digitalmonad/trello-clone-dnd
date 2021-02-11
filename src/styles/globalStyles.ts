@@ -17,6 +17,10 @@ body,
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
+
+input:focus, textarea:focus, select:focus{
+        outline: none;
+    }
 `;
 
 interface DragPreviewContainerProps {
@@ -35,13 +39,9 @@ export const Button = styled.button`
   box-shadow: none;
   color: #000;
   cursor: pointer;
-  padding: 6px 12px;
+  padding: 10px 12px;
   text-align: center;
   transition: background 85ms ease-in;
-  font-weight: bold;
-  &:hover {
-    background-color: #65c64c;
-  }
 `;
 
 export const CustomDragLayerContainer = styled.div`
